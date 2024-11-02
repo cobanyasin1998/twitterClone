@@ -3,25 +3,33 @@ import Home from "~/pages/home/index.jsx";
 import Explore from "~/pages/explore/index.jsx";
 import Notification from "~/pages/notification/index.jsx";
 import NotFound from "~/pages/errors/404.jsx";
+import MainLayout from "~/layouts/main/index.jsx";
 
 
 const routes = createBrowserRouter([
     {
         path: "/",
-        element : <Home/>
+        element : <MainLayout/>,
+        children:[
+            {
+                index: true,
+                element : <Home/>
+            },
+            {
+                path: "explore",
+                element : <Explore/>
+            },
+            {
+                path: "notification",
+                element : <Notification/>
+            },
+            {
+                path: "*",
+                element: <NotFound/>
+            }
+        ]
     },
-    {
-        path: "/explore",
-        element : <Explore/>
-    },
-    {
-        path: "/notification",
-        element : <Notification/>
-    },
-    {
-        path: "*",
-        element: <NotFound/>
-    }
+
 ])
 
 export default  routes
